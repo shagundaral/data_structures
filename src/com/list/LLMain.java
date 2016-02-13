@@ -1,5 +1,9 @@
 package com.list;
 
+
+
+import java.util.List;
+
 import com.pojos.Node;
 
 public class LLMain {
@@ -17,6 +21,8 @@ public class LLMain {
 /*		testList = testList.reverse(testList);
 		testList.printList();
 */		
+		
+		List<String> strings;
 	}
 
 }
