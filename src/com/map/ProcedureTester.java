@@ -54,6 +54,7 @@ public class ProcedureTester {
 		map.put(20, "s");
 		getSortedMap(map);
 		
+		
 	}
 
 	private static void testSynchronization() {

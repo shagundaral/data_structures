@@ -3,9 +3,11 @@ package com.trees;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import sums.gen.Node;
+
 public class ShagunsTree {
 	
-	private static TreeNode head;
+	public TreeNode head;
 	
 	public void add(int i){
 		if(null==head){
@@ -503,5 +505,80 @@ public class ShagunsTree {
 		
 	}
 	
+	void removeHalfNodes(){
+		if(null!=head){
+			if(null!=head.getLeft() && null!=head.getRight()){
+				removeHalfNode(head.getLeft());
+				removeHalfNode(head.getRight());
+			}else if(null==head.getLeft()){
+				if(null!=head.getRight()){
+					head=head.getRight();
+					removeHalfNode(head);
+				}
+			}else if(null==head.getRight()){
+				head = head.getLeft();
+				removeHalfNode(head);
+			}
+		}
+	}
+	
+	private void removeHalfNode(TreeNode node){
+
+		if(null!=node.getLeft() && null!=node.getRight()){
+			removeHalfNode(node.getLeft());
+			removeHalfNode(node.getRight());
+		}else if(null==node.getLeft()){
+			if(null!=node.getRight()){
+				node=node.getRight();
+				removeHalfNode(node);
+			}
+		}else if(null==node.getRight()){
+			node = node.getLeft();
+			removeHalfNode(node);
+		}
+	
+	}
+	
+	public void removeHalfNodeGv(TreeNode node,TreeNode parent){
+		TreeNode childNode = isHalfNode(node);
+		/**
+		 * If balanced nothing would be returned
+		 *    call this method recursively for left and right of the node.
+		 * if not balanced...it would return the non null child.
+		 *    
+		 */
+		if(childNode!=null && parent == null){
+		    head = childNode;
+		}else if(childNode!=null && parent != null){
+			if(parent.getRight()==node){
+				parent.setRight(childNode);
+			}else {
+				parent.setLeft(childNode);
+			}
+	    	node = null;
+	    }else if(childNode ==null){
+	    	if(node.getLeft()!=null){
+			  removeHalfNodeGv(node.getLeft(),node);
+	    	}
+	    	if(node.getRight()!=null){
+			   removeHalfNodeGv(node.getRight(),node);
+	    	}
+		}
+	}
+
+	private TreeNode isHalfNode(TreeNode node) {
+		if(node.getLeft()!=null && node.getRight() == null){
+			return node.getLeft();
+		}else if(node.getLeft()==null && node.getRight() != null){
+			return node.getRight();
+		}
+		return null;
+	}
+	
+	//least common ancestor of x and y
+	//without recursion
+	int LCABinaryTree(int x, int y, TreeNode root){
+		
+	}
 	
 }

@@ -35,8 +35,10 @@ public class TreeMain {
 		tree.add(12);
 		tree.add(15);
 		tree.add(22);
+		tree.removeHalfNodeGv(tree.head,null);
+		tree.inOrderTraversal();
 		
-		System.out.println(tree.isBST());
+//		System.out.println(tree.isBST());
 		
 		/*
 		System.out.println(tree.hasPathSum(52));
